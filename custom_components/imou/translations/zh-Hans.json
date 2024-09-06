@@ -1,0 +1,76 @@
+{
+  "config": {
+    "step": {
+      "login": {
+        "title": "连接至IMOU云",
+        "data": {
+          "app_id": "AppId",
+          "app_secret": "AppSecret",
+          "api_url": "网址"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "该AppId已配置"
+    },
+    "error": {
+      "appIdOrSecret_invalid": "appId或者appSecret有误",
+      "connect_failed": "连接失败",
+      "request_failed": "请求失败"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "storage_used": {
+        "name": "Storage Used"
+      },
+      "status": {
+        "name": "Status"
+      }
+    },
+    "select": {
+      "night_vision_mode": {
+        "name": "Night Vision Mode"
+      }
+    },
+    "switch": {
+      "motion_detect": {
+        "name": "Motion Detect"
+      },
+      "ab_alarm_sound": {
+        "name": "Abnormal Sound Alarm"
+      },
+      "close_camera": {
+        "name": "Close Camera"
+      },
+      "white_light": {
+        "name": "White Light"
+      },
+      "audio_encode_control": {
+        "name": "Audio Encode Control"
+      }
+    },
+    "button": {
+      "ptz_up": {
+        "name": "Ptz Up"
+      },
+      "ptz_down": {
+        "name": "Ptz Down"
+      },
+      "ptz_left": {
+        "name": "Ptz Left"
+      },
+      "ptz_right": {
+        "name": "Ptz Right"
+      },
+      "restart_device": {
+        "name": "Restart Device"
+      }
+    },
+    "camera": {
+      "camera": {
+        "name": "Camera"
+      }
+    }
+  }
+}
