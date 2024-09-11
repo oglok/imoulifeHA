@@ -6,7 +6,7 @@ import voluptuous as vol
 from homeassistant import config_entries
 
 from .const import (
-    DOMAIN, PARAM_API_URL, PARAM_APP_ID, PARAM_APP_SECRET, CONF_API_URL_HZ, CONF_API_URL_OR, CONF_API_URL_FK,
+    DOMAIN, PARAM_API_URL, PARAM_APP_ID, PARAM_APP_SECRET, CONF_API_URL_OR, CONF_API_URL_FK,
     CONF_API_URL_SG,
 )
 from .pyimouapi.exceptions import ImouException
@@ -32,8 +32,8 @@ class ImouConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     {
                         vol.Required(PARAM_APP_ID): str,
                         vol.Required(PARAM_APP_SECRET): str,
-                        vol.Required(PARAM_API_URL, default=CONF_API_URL_HZ): vol.In(
-                            [CONF_API_URL_HZ, CONF_API_URL_SG, CONF_API_URL_OR, CONF_API_URL_FK]
+                        vol.Required(PARAM_API_URL, default=CONF_API_URL_SG): vol.In(
+                            [ CONF_API_URL_SG, CONF_API_URL_OR, CONF_API_URL_FK]
                         ),
                     }
                 )
@@ -65,8 +65,8 @@ class ImouConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     {
                         vol.Required(PARAM_APP_ID): str,
                         vol.Required(PARAM_APP_SECRET): str,
-                        vol.Required(PARAM_API_URL, default=CONF_API_URL_HZ): vol.In(
-                            [CONF_API_URL_HZ, CONF_API_URL_SG, CONF_API_URL_OR, CONF_API_URL_FK]
+                        vol.Required(PARAM_API_URL, default=CONF_API_URL_SG): vol.In(
+                            [CONF_API_URL_SG, CONF_API_URL_OR, CONF_API_URL_FK]
                         ),
                     }
                 ),

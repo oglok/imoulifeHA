@@ -22,10 +22,10 @@
   "entity": {
     "sensor": {
       "storage_used": {
-        "name": "Storage Used"
+        "name": "\u5b58\u50a8\u4f7f\u7528\u7387"
       },
       "status": {
-        "name": "Status"
+        "name": "\u72b6\u6001"
       }
     },
     "select": {

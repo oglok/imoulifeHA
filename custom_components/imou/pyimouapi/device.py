@@ -7,7 +7,8 @@ from .const import API_ENDPOINT_LIST_DEVICE_DETAILS, PARAM_PAGE_SIZE, PARAM_PAGE
     PARAM_DEVICE_ABILITY, PARAM_DEVICE_VERSION, PARAM_BRAND, PARAM_DEVICE_MODEL, PARAM_CHANNEL_LIST, PARAM_CHANNEL_NAME, \
     PARAM_CHANNEL_STATUS, PARAM_CHANNEL_ABILITY, PARAM_STREAM_ID, PARAM_OPERATION, PARAM_DURATION, \
     API_ENDPOINT_GET_DEVICE_ALARM_PARAM, API_ENDPOINT_SET_DEVICE_NIGHT_VISION_MODE, PARAM_PRODUCT_ID, PARAM_PROPERTIES, \
-    API_ENDPOINT_GET_IOT_DEVICE_PROPERTIES, API_ENDPOINT_SET_IOT_DEVICE_PROPERTIES, API_ENDPOINT_DEVICE_SD_CARD_STATUS
+    API_ENDPOINT_GET_IOT_DEVICE_PROPERTIES, API_ENDPOINT_SET_IOT_DEVICE_PROPERTIES, API_ENDPOINT_DEVICE_SD_CARD_STATUS, \
+    PARAM_CHANNEL_NUM
 from .openapi import ImouOpenApiClient
 
 
@@ -47,6 +48,7 @@ class ImouDevice:
         self._brand = brand
         self._device_model = device_model
         self._device_version = device_version
+        self._channel_number = 0
         self._channels = []
         self._product_id = None
 
@@ -86,11 +88,18 @@ class ImouDevice:
     def product_id(self) -> str:
         return self._product_id
 
+    @property
+    def channel_number(self) -> int:
+        return self._channel_number
+
     def set_product_id(self, product_id: str) -> None:
         self._product_id = product_id
 
     def set_channels(self, channels: []) -> None:
         self._channels = channels
+
+    def set_channel_number(self, channel_number: int):
+        self._channel_number = channel_number
 
 
 class ImouDeviceManager:
@@ -119,7 +128,8 @@ class ImouDeviceManager:
                                      device_version)
             if PARAM_PRODUCT_ID in device:
                 imou_device.set_product_id(device[PARAM_PRODUCT_ID])
-
+            if PARAM_CHANNEL_NUM in device:
+                imou_device.set_channel_number(device[PARAM_CHANNEL_NUM])
             if PARAM_CHANNEL_LIST in device:
                 channel_list = device[PARAM_CHANNEL_LIST]
                 channels = []

@@ -9,7 +9,7 @@ from .const import BUTTON_TYPE_PARAM_VALUE, SWITCH_TYPE_ENABLE, PARAM_MOTION_DET
     PARAM_NIGHT_VISION_MODE, PARAM_MODE, PARAM_CURRENT_OPTION, PARAM_MODES, PARAM_OPTIONS, PARAM_CHANNELS, \
     PARAM_CHANNEL_ID, PARAM_USED_BYTES, PARAM_TOTAL_BYTES, PARAM_STREAMS, PARAM_HLS, PARAM_RESTART_DEVICE, PARAM_URL, \
     PARAM_CLOSE_CAMERA, PARAM_WHITE_LIGHT, PARAM_AB_ALARM_SOUND, PARAM_AUDIO_ENCODE_CONTROL, CONF_CLOSE_CAMERA, \
-    CONF_WHITE_LIGHT, CONF_AB_ALARM_SOUND, CONF_AUDIO_ENCODE_CONTROL, CONF_NVM, PARAM_STREAM_ID
+    CONF_WHITE_LIGHT, CONF_AB_ALARM_SOUND, CONF_AUDIO_ENCODE_CONTROL, CONF_NVM, PARAM_STREAM_ID, CONF_PT
 from .pyimouapi import RequestFailedException
 from .pyimouapi.device import ImouDeviceManager
 
@@ -38,7 +38,7 @@ class ImouHaDevice(object):
         self._selects = {
 
         }
-        self._buttons = ["ptz_up", "ptz_down", "ptz_left", "ptz_right", "restart_device"]
+        self._buttons = ["restart_device"]
         self._product_id = product_id
 
     @property
@@ -214,7 +214,7 @@ class ImouHaDeviceManager(object):
         """
         devices = []
         for device in await self.device_manager.async_get_devices():
-            if len(device.channels) > 0:
+            if device.channel_number > 0 and len(device.channels) > 0:
                 for channel in device.channels:
                     imou_ha_device = ImouHaDevice(device.device_id, channel.channel_id,
                                                   channel.channel_name, device.brand, device.device_model,
@@ -234,6 +234,9 @@ class ImouHaDeviceManager(object):
                             PARAM_CURRENT_OPTION: "",
                             PARAM_OPTIONS: []
                         }
+                    if CONF_PT in abilities:
+                        imou_ha_device.buttons.extend(["ptz_up", "ptz_down", "ptz_left", "ptz_right"])
+
                     devices.append(imou_ha_device)
         return devices
 

@@ -3,7 +3,6 @@
 DOMAIN = "imou_life"
 
 # Configuration definitions
-CONF_API_URL_HZ = "openapi.lechange.cn"
 CONF_API_URL_SG = "openapi-sg.easy4ip.com"
 CONF_API_URL_OR = "openapi-or.easy4ip.com"
 CONF_API_URL_FK = "openapi-fk.easy4ip.com"
@@ -12,6 +11,7 @@ CONF_WHITE_LIGHT = "WhiteLight"
 CONF_AB_ALARM_SOUND = "AbAlarmSound"
 CONF_AUDIO_ENCODE_CONTROL = "AudioEncodeControl"
 CONF_NVM = "NVM"
+CONF_PT = "PT"
 
 # parameters:
 PARAM_API_URL = "api_url"
